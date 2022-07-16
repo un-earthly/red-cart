@@ -6,7 +6,7 @@ import Products from './components/Products';
 function App() {
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route path='/' element={<Products />} />
         <Route path='/product/:id' element={<ProductDetails />} />
