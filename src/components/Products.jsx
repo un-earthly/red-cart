@@ -18,7 +18,9 @@ export default function Products() {
     return (
         <div className='ui grid container'>
             {
-                products?.map(p => <div className="four wide column">
+                Object.keys(products).length === 0 ? (
+                    <div>...Loading</div>
+                ) : products.map(p => <div className="four wide column">
                     <div className="ui link cards">
                         <div className="card">
                             <div className="image">
@@ -32,7 +34,8 @@ export default function Products() {
                             </div>
                         </div>
                     </div>
-                </div>)
+                </div>
+                )
             }
         </div>
     )
