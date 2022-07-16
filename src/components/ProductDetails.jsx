@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { selectedProduct } from '../redux/product-actions'
+import { removeSelectedProduct, selectedProduct } from '../redux/product-actions'
 
 export default function ProductDetails() {
     const { id } = useParams()
@@ -10,6 +10,10 @@ export default function ProductDetails() {
     useEffect(() => {
         axios.get(`https://fakestoreapi.com/products/${id}`)
             .then(res => dispatch(selectedProduct(res.data)))
+
+        return () => {
+            dispatch(removeSelectedProduct());
+        };
     }, [id])
 
     const product = useSelector(state => state.product.product)

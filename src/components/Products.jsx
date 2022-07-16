@@ -15,27 +15,29 @@ export default function Products() {
         run()
     }, [])
     const products = useSelector(state => state.allProducts.products)
+    console.log(!products)
     return (
         <div className='ui grid container'>
             {
-                Object.keys(products).length === 0 ? (
-                    <div>...Loading</div>
-                ) : products.map(p => <div className="four wide column">
-                    <div className="ui link cards">
-                        <div className="card">
-                            <div className="image">
-                                <img src={p.image} alt="" />
-                            </div>
-                            <div className="content">
-                                <h1 className="header">{p.title}</h1>
-                                <div className="meta price">${p.price}</div>
-                                <div className="meta price">{p.category}</div>
-                                <Link to={`/product/${p.id}`}>Details</Link>
+                !products ? (
+                    <div className="center header four wide column">...Loading</div>
+                ) :
+                    products?.map(p => <div className="four wide column">
+                        <div className="ui link cards">
+                            <div className="card">
+                                <div className="image">
+                                    <img src={p.image} alt="" />
+                                </div>
+                                <div className="content">
+                                    <h1 className="header">{p.title}</h1>
+                                    <div className="meta price">${p.price}</div>
+                                    <div className="meta price">{p.category}</div>
+                                    <Link to={`/product/${p.id}`}>Details</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                )
+                    )
             }
         </div>
     )
