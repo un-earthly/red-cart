@@ -13,9 +13,8 @@ export default function Products() {
             dispatch(setProducts(data))
         }
         run()
-    }, [])
+    }, [dispatch])
     const products = useSelector(state => state.allProducts.products)
-    console.log(!products)
     return (
         <div className='ui grid container'>
             {

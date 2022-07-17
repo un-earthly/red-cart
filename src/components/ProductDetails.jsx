@@ -14,40 +14,42 @@ export default function ProductDetails() {
         return () => {
             dispatch(removeSelectedProduct());
         };
-    }, [id])
+    }, [id, dispatch])
 
     const product = useSelector(state => state.product.product)
-    const { title, image, price, description, category, } = product
+    console.log(product)
     return (
         <div className="ui grid container">
-            {Object.keys(product).length === 0 ? (
-                <div>...Loading</div>
-            ) : (
-                <div className="ui placeholder segment">
-                    <div className="ui two column stackable center aligned grid">
-                        <div className="ui vertical divider">AND</div>
-                        <div className="middle aligned row">
-                            <div className="column lp">
-                                <img className="ui fluid image" alt="" src={image} />
-                            </div>
-                            <div className="column rp">
-                                <h1>{title}</h1>
-                                <h2 className="ui teal tag label">
-                                    ${price}
-                                </h2>
-                                <h3 className="ui brown block header">{category}</h3>
-                                <p>{description}</p>
-                                <div className="ui vertical animated button" tabIndex="0">
-                                    <div className="hidden content">
-                                        <i className="shop icon"></i>
+            {
+                !product ? (
+                    <div>...Loading</div>
+                ) :
+                    (
+                        <div className="ui placeholder segment">
+                            <div className="ui two column stackable center aligned grid">
+                                <div className="ui vertical divider">AND</div>
+                                <div className="middle aligned row">
+                                    <div className="column lp">
+                                        <img className="ui fluid image" alt="" src={product.image} />
                                     </div>
-                                    <div className="visible content">Add to Cart</div>
+                                    <div className="column rp">
+                                        <h1>{product.title}</h1>
+                                        <h2 className="ui teal tag label">
+                                            ${product.price}
+                                        </h2>
+                                        <h3 className="ui brown block header">{product.category}</h3>
+                                        <p>{product.description}</p>
+                                        <div className="ui vertical animated button" tabIndex="0">
+                                            <div className="hidden content">
+                                                <i className="shop icon"></i>
+                                            </div>
+                                            <div className="visible content">Add to Cart</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            )}
+                    )}
         </div>
     )
 }
